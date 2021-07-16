@@ -4,6 +4,7 @@ pub fn blake3_hash(input: &[u8], output: &mut [u8]) -> () {
     hasher.update_with_join::<blake3::join::SerialJoin>(input);
     let mut output_reader = hasher.finalize_xof();
     output_reader.fill(output);
+    output[0] = 255;
 }
 
 #[ocaml::func]
